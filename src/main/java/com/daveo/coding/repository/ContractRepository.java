@@ -16,6 +16,5 @@ import com.daveo.coding.model.Contract;
  */
 public interface ContractRepository extends JpaRepository<Contract, Long> {
 
-	// Double sumMonthlyRevenueOffAllContracts(Customer customer);
 
 }
