@@ -11,8 +11,6 @@ import javax.persistence.OrderBy;
 
 import org.hibernate.validator.constraints.Email;
 
-import net.minidev.json.annotate.JsonIgnore;
-
 /**
  * Entity Customer class
  * 
@@ -46,12 +44,11 @@ public class Customer {
 	 * Each Customer may have no, one, or many Contract entities. This is a 1:N
 	 * relationship.
 	 */
-	@JsonIgnore
+
 	@OneToMany(mappedBy = "customer")
 	@OrderBy("id")
 	public Set<Contract> contracts = new HashSet<>();
 
-	
 	/**
 	 * Constructor with fields attributes
 	 * 
@@ -92,5 +89,4 @@ public class Customer {
 		return id;
 	}
 
-	
 }

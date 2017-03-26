@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * Entity Contract class description with attributes
@@ -47,6 +49,7 @@ public class Contract {
 	public Double monthlyRevenue;
 
 	@ManyToOne
+	@JsonIgnore
 	private Customer customer;
 
 	/**
