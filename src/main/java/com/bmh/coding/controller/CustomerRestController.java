@@ -4,6 +4,7 @@
 package com.bmh.coding.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -134,6 +135,15 @@ public class CustomerRestController {
 	private void validateCustomer(Long customerId) {
 		this.customerRepository.findById(customerId).orElseThrow(() -> new CustomerNotFoundException(customerId));
 
+	}
+
+	/**
+	 * @return
+	 * @see org.springframework.data.jpa.repository.JpaRepository#findAll()
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/customers")
+	public List<Customer> findAll() {
+		return customerRepository.findAll();
 	}
 
 }

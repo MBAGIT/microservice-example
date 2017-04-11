@@ -176,8 +176,7 @@ public class CustomerRestControllerTest {
 		mockMvc.perform(get("/customerservice/customer/" + this.customer.getId())).andExpect(status().isOk())
 				.andExpect(content().contentType(contentType))
 				// "fullName", "email@daveo.com"
-				.andExpect(jsonPath("$.fullName", is("fullName")))
-				.andExpect(jsonPath("$.email", is("email@daveo.com")))
+				.andExpect(jsonPath("$.fullName", is("fullName"))).andExpect(jsonPath("$.email", is("email@daveo.com")))
 				// new Date(), "xxxA", 250d, customer
 				// new Date(), "xxxA3", 250d, customer
 				.andExpect(jsonPath("$.contracts[0].type", is("A3")))
