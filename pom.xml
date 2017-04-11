@@ -52,12 +52,6 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.bmh.coding</groupId>
-			<artifactId>models</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 
 		<dependency>
 			<groupId>io.springfox</groupId>
