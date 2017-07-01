@@ -22,10 +22,14 @@ import com.bmh.coding.model.Customer;
 import com.bmh.coding.repository.ContractRepository;
 import com.bmh.coding.repository.CustomerRepository;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * @author Mohamed
  *
  */
+@Api(value=" Customer microservice Rest API")
 @RestController
 @RequestMapping("/customerservice")
 public class CustomerRestController {
@@ -56,6 +60,7 @@ public class CustomerRestController {
 	 *            Customer to save
 	 * @return
 	 */
+	@ApiOperation(value="Add new customer ")
 	@RequestMapping(method = RequestMethod.PUT, value = "/customer")
 	ResponseEntity<?> addCustomer(@RequestBody Customer input) {
 		try {
@@ -83,6 +88,7 @@ public class CustomerRestController {
 	 * @param input
 	 * @return
 	 */
+	@ApiOperation(value="Add new contract to customer ")
 	@RequestMapping(method = RequestMethod.PUT, value = "/contract/{customerId}")
 	ResponseEntity<?> add(@PathVariable Long customerId, @RequestBody Contract input) {
 		this.validateCustomer(customerId);
@@ -104,6 +110,7 @@ public class CustomerRestController {
 	 * @param customerId
 	 * @return
 	 */
+	@ApiOperation(value="Show All Customer informations")
 	@RequestMapping(method = RequestMethod.GET, value = "/customer/{customerId}")
 	Customer getCustomerInformation(@PathVariable Long customerId) {
 		return this.customerRepository.findById(customerId)
@@ -118,6 +125,7 @@ public class CustomerRestController {
 	 * @param customerId
 	 * @return {@link ResponseEntity}
 	 */
+	@ApiOperation(value="Retrieve the sum of revenues of all contracts from an existing Customer")
 	@RequestMapping(method = RequestMethod.GET, value = "/contract/{customerId}")
 	ResponseEntity<Double> getSumOfRevenueOfAllContracts(@PathVariable Long customerId) {
 		this.validateCustomer(customerId);
@@ -128,22 +136,24 @@ public class CustomerRestController {
 	}
 
 	/**
+	 * @return
+	 * @see org.springframework.data.jpa.repository.JpaRepository#findAll()
+	 */
+	@ApiOperation(value="Show all customers List")
+	@RequestMapping(method = RequestMethod.GET, value = "/customers")
+	public List<Customer> findAll() {
+		return customerRepository.findAll();
+	}
+	
+	/**
 	 * Method to validate Customer Throw Exception if Not found
 	 * 
 	 * @param customerId
 	 */
+	
 	private void validateCustomer(Long customerId) {
 		this.customerRepository.findById(customerId).orElseThrow(() -> new CustomerNotFoundException(customerId));
 
-	}
-
-	/**
-	 * @return
-	 * @see org.springframework.data.jpa.repository.JpaRepository#findAll()
-	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/customers")
-	public List<Customer> findAll() {
-		return customerRepository.findAll();
 	}
 
 }

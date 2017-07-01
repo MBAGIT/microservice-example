@@ -26,7 +26,7 @@ public class SwaggerConfig {
 	@Bean
 	public Docket customerServiceApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.daveo.coding.controller"))
+				.apis(RequestHandlerSelectors.basePackage("com.bmh.coding.controller"))
 				.paths(regex("/customerservice.*")).build().apiInfo(apiInfo());
 
 	}
@@ -39,8 +39,8 @@ public class SwaggerConfig {
 		// Api Info description
 		// metadata
 		return new ApiInfo("Customer Service Demo", "Simple Microservice Demo using Spring Boot", "1.0",
-				"Daveo UsesCase", new Contact("Babchia ", "mohamed.babchia@daveo.fr", "mbabchia.daveo.com"),
-				"https://www.daveo.fr/", "@Daveo");
+				"Daveo UsesCase", new Contact("Babchia ", "MBAGIT@github.com", "mbabchia.com"),
+				"https://github.com/MBAGIT", "@BMH");
 	}
 
 	/**
